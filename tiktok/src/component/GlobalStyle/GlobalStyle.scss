@@ -3,6 +3,13 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: rgba(254, 44, 85, 1);
+    --width-button-search: 52px;
 }
 
 html {
@@ -14,4 +21,18 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     font-family: ibm-plex-sans, sans-serif;
+}
+
+@mixin button($bgColor: red, $border: 'none') {
+    @if ($border == 'none') {
+        border: none;
+        outline: none;
+        background-color: $bgColor;
+    }
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: black;
 }
