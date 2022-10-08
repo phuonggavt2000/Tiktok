@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import url('https://use.typekit.net/waz4tsx.css');
 
 * {
     box-sizing: border-box;
@@ -9,7 +8,9 @@
 
 :root {
     --primary-color: rgba(254, 44, 85, 1);
+
     --width-button-search: 52px;
+    --default-layout-horizontal-spacer: 24px;
 }
 
 html {
@@ -20,7 +21,31 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
-    font-family: ibm-plex-sans, sans-serif;
+    font-family: 'ProximaNova', sans-serif;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('../../asset/font/Proxima-Nova-Regular.woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('../../asset/font/Proxima-Nova-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('../../asset/font/Proxima-Nova-Bold.woff');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: SofiaPro;
+    src: url('../../asset/font/sofiapro-bold.woff');
+    font-weight: 700;
 }
 
 @mixin button($bgColor: red, $border: 'none') {
@@ -35,4 +60,22 @@ a {
     display: block;
     text-decoration: none;
     color: black;
+}
+
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 1.4rem;
+        line-height: 22px;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px;
+    }
 }
