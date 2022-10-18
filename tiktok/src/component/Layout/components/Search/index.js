@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from '../../../../hook';
 
 const cx = classNames.bind(styles);
 
@@ -13,24 +14,36 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const debounce = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 4, 23]);
-        }, 3000);
-    }, []);
+        if (!debounce.trim()) {
+            setSearchResult([]);
+            return;
+        }
+
+        setLoading(true);
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+                setLoading(false);
+            });
+    }, [debounce]);
     return (
         <HeadlessTippy
+            interactive
             render={(attrs, content) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        <AccountItem></AccountItem>
-                        <AccountItem></AccountItem>
-                        <AccountItem></AccountItem>
-                        <AccountItem></AccountItem>
+                        {searchResult.map((result) => (
+                            <AccountItem key={result.id} data={result}></AccountItem>
+                        ))}
                     </PopperWrapper>
                 </div>
             )}
@@ -52,7 +65,7 @@ function Search() {
                         setShowResult(true);
                     }}
                 />
-                {!!searchValue && (
+                {!!searchValue && !loading && (
                     <button
                         className={cx('close')}
                         onClick={() => {
@@ -64,7 +77,7 @@ function Search() {
                     </button>
                 )}
 
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
                 <button type="" className={cx('btn')}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
