@@ -5,6 +5,10 @@
     .menu-item {
         margin-left: 0;
     }
+
+    .menu-body {
+        overflow-y: auto;
+    }
 }
 
 .menu-popper {
@@ -34,6 +38,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .back-btn {

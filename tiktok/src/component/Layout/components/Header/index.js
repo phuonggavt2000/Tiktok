@@ -19,6 +19,8 @@ import Button from '../../../Button';
 import Menu from '../../Popper/Menu';
 import Image from '../../../Image';
 import Search from '../Search';
+import { Link } from 'react-router-dom';
+import routeConfig from '../../../../config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +31,195 @@ const MENU_ITEMS = [
         children: {
             title: 'Language',
             data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'English1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                        ],
+                    },
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
                 {
                     code: 'en',
                     title: 'English',
@@ -100,7 +291,9 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="ok" />
+                <Link to={routeConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="ok" />
+                </Link>
 
                 <Search></Search>
 

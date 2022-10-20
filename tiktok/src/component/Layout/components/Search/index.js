@@ -19,6 +19,14 @@ function Search() {
 
     const inputRef = useRef();
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if (searchValue.startsWith(' ')) {
+            return;
+        }
+        setSearchValue(searchValue);
+    };
+
     useEffect(() => {
         if (!debounce.trim()) {
             setSearchResult([]);
@@ -57,9 +65,7 @@ function Search() {
                     className={cx('input')}
                     placeholder="Tìm kiếm tài khoản và video"
                     value={searchValue}
-                    onChange={(e) => {
-                        setSearchValue(e.target.value);
-                    }}
+                    onChange={handleChange}
                     ref={inputRef}
                     onFocus={() => {
                         setShowResult(true);
@@ -79,7 +85,13 @@ function Search() {
 
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button type="" className={cx('btn')}>
+                <button
+                    type=""
+                    className={cx('btn')}
+                    onMouseDown={(e) => {
+                        e.preventDefault();
+                    }}
+                >
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
