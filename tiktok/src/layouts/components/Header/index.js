@@ -10,17 +10,17 @@ import {
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { Message, UploadIcon } from '../../../icon/icons';
+import { Message, UploadIcon } from '../../../component/icon/icons';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import images from '../../../../asset/images';
+import images from '../../../asset/images';
 import Tippy from '@tippyjs/react';
-import Button from '../../../Button';
+import Button from '../../../component/Button';
 import Menu from '../../Popper/Menu';
-import Image from '../../../Image';
+import Image from '../../../component/Image';
 import Search from '../Search';
 import { Link } from 'react-router-dom';
-import routeConfig from '../../../../config/routes';
+import config from '../../../config';
 
 const cx = classNames.bind(styles);
 
@@ -291,7 +291,7 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routeConfig.home} className={cx('logo-link')}>
+                <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="ok" />
                 </Link>
 
