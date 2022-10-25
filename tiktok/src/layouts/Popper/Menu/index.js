@@ -35,6 +35,23 @@ function Menu({ children, items = [], onChange = defaultFn }) {
         });
     };
 
+    const handleBack = () => {
+        setHistory((prev) => {
+            return prev.slice(0, prev.length - 1);
+        });
+    };
+
+    const renderMenu = (attrs, content) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper className={cx('menu-popper')}>
+                {history.length > 1 && <Header title="Language" onBack={handleBack}></Header>}
+                <div className={cx('menu-body')}>{renderItems()}</div>
+            </PopperWrapper>
+        </div>
+    );
+
+    const handleResetMenu = () => setHistory((prev) => prev.slice(0, 1));
+
     return (
         <Tippy
             interactive
@@ -42,24 +59,8 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             delay={[0, 200]}
             placement="bottom-end"
             offset={[9, 12]}
-            onHide={() => setHistory((prev) => prev.slice(0, 1))}
-            render={(attrs, content) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-popper')}>
-                        {history.length > 1 && (
-                            <Header
-                                title="Language"
-                                onBack={() => {
-                                    setHistory((prev) => {
-                                        return prev.slice(0, prev.length - 1);
-                                    });
-                                }}
-                            ></Header>
-                        )}
-                        <div className={cx('menu-body')}>{renderItems()}</div>
-                    </PopperWrapper>
-                </div>
-            )}
+            onHide={handleResetMenu}
+            render={renderMenu}
         >
             {children}
         </Tippy>
