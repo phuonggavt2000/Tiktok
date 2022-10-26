@@ -38,7 +38,7 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         primary,
-        outline,    
+        outline,
         small,
         text,
         disabled,
